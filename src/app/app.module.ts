@@ -6,8 +6,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database'
 import { AngularFireAuthModule } from 'angularfire2/auth'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { AuthService } from './auth.service';
-
 import { AppRoutingModule } from './app-routing.module';
+import { AuthGuard } from './auth-guard.service';
+
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
@@ -43,7 +44,8 @@ import { LoginComponent } from './login/login.component';
     NgbModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
