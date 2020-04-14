@@ -11,8 +11,7 @@ export class AppComponent {
   constructor(private auth: AuthService, router: Router) {
     auth.user$.subscribe(user => {
       if (user) {
-        //const returnUrl = localStorage.getItem('returnUrl')
-        const returnUrl = localStorage.getItem('check-out')
+        const returnUrl = localStorage.getItem('returnUrl')
         router.navigateByUrl(returnUrl)
       }
     })
