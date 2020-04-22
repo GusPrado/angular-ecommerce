@@ -19,7 +19,6 @@ export class ProductService {
                   .pipe(map (results => results.map(
                     res => ({ key: res.payload.key, ...res.payload.val()})
                   )))
-
   }
 
   getOne(productId) {

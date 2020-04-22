@@ -2,26 +2,26 @@
 <p>
   <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
 </p>
-<p>
+<!-- LAST SEARCH METHOD - DISABLED <p>
   <input
     #query
     (keyup)="filter(query.value)"
     type="text" class="form-control" placeholder="Search...">
-</p>
+</p> -->
 
-<table class="table">
+<table *ngIf="products" datatable class="row-border hover">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Price</th>
-      <th></th>
+      <th scope="col">Title</th>
+      <th scope="col">Price</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let p of filteredProducts">
-      <td>{{ p.title}}</td>
-      <td>{{ p.price }}</td>
-      <td>
+    <tr *ngFor="let p of products">
+      <td scope="row">{{ p.title}}</td>
+      <td scope="row">{{ p.price }}</td>
+      <td scope="row">
         <a [routerLink]="['/admin/products/', p.key]">Edit</a>
       </td>
     </tr>

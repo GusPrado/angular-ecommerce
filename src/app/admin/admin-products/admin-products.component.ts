@@ -8,28 +8,28 @@ import { Subscription } from 'rxjs'
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.css']
 })
-export class AdminProductsComponent implements OnInit, OnDestroy {
+export class AdminProductsComponent implements OnInit {
 
   products: Product[]
-  filteredProducts: any[]
-  subscription: Subscription
+  //subscription: Subscription
 
   constructor(private productService: ProductService) {
-    this.subscription = this.productService.getAll()
-      .subscribe(products => this.filteredProducts = this.products = products)
+    this.productService.getAll()
+      .subscribe(prods => this.products = prods)
    }
 
   ngOnInit() {
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe()
-  }
+  // ngOnDestroy() {
+  //   this.subscription.unsubscribe()
+  // }
 
-  filter(query: string) {
-    this.filteredProducts = (query) ?
-      this.products.filter(p => p.title.toLowerCase().includes(query.toLowerCase())) :
-      this.products
-  }
+  // <-- REPLACED BY DATATABLE SEARCH -->
+  // filter(query: string) {
+  //   this.filteredProducts = (query) ?
+  //     this.products.filter(p => p.title.toLowerCase().includes(query.toLowerCase())) :
+  //     this.products
+  // }
 
 }

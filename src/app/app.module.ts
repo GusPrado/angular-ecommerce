@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './auth-guard.service';
 import { FormsModule } from '@angular/forms'
 import { CustomFormsModule } from 'ng2-validation'
+import { DataTablesModule } from 'angular-datatables'
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -51,7 +52,8 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
     AngularFireAuthModule,
     NgbModule,
     FormsModule,
-    CustomFormsModule
+    CustomFormsModule,
+    DataTablesModule
   ],
   providers: [
     AuthService,
