@@ -16,9 +16,11 @@ export class ShoppingCartService {
     })
   }
 
-  private getCart(cartId: string) {
+  async getCart() {
 
-    return this.db.object('/shopping-carts' + cartId)
+    const cartId = await this.getOrCeateCartId()
+
+    return this.db.object('/shopping-carts/' + cartId).snapshotChanges()
   }
 
   private getItem(cartId: string, productId: string) {
@@ -38,10 +40,19 @@ export class ShoppingCartService {
   }
 
   async addToCart(product: Product) {
+    this.updateItemQuantity(product, 1)
+  }
+
+  async removeFromCart(product: Product) {
+    this.updateItemQuantity(product, -1)
+  }
+
+  private async updateItemQuantity(product: Product, change: number) {
     let cartId = await this.getOrCeateCartId()
     let item$ = this.getItem(cartId, product.key)
     item$.snapshotChanges().pipe(take(1)).subscribe(item => {
-      item$.update({ product: product, quantity: (item.payload.child('/quantity').val() || 0) + 1 })
+      item$.update({ product: product, quantity: (item.payload.child('/items').val() || 0) + change })
+      // item$.update({ product: product, quantity: (item.payload.exportVal().quantity || 0) + 1 })
       // if (item) item$.update({ quantity: item.quantity + 1 })
       // else item$.set({ product: product, quantity: 1 })
     })
