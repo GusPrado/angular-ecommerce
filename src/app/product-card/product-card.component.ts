@@ -32,7 +32,7 @@ export class ProductCardComponent implements OnInit {
     if (this.shoppingCart) {
 
       const item = this.shoppingCart[this.product.key]
-      console.log('item', item)
+      //console.log('item', item)
       return item ? item.quantity : 0
     }
     return 110
