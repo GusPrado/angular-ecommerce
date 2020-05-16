@@ -24,8 +24,21 @@ export class ShoppingCartService {
     const cartId = await this.getOrCeateCartId()
 
     return this.db.object('/shopping-carts/' + cartId)
-      .snapshotChanges()
-      .pipe(map(x => new ShoppingCart(x.items)))
+    .snapshotChanges()
+    .pipe(map(x => new ShoppingCart(x.items)))
+  }
+
+  async addToCart(product: Product) {
+    this.updateItem(product, 1)
+  }
+
+  async removeFromCart(product: Product) {
+    this.updateItem(product, -1)
+  }
+
+  async clearCart() {
+    let cartId = await this.getOrCeateCartId()
+    this.db.object('/shopping-carts/' + cartId + '/items').remove()
   }
 
   private getItem(cartId: string, productId: string) {
@@ -44,23 +57,18 @@ export class ShoppingCartService {
 
   }
 
-  async addToCart(product: Product) {
-    this.updateItem(product, 1)
-  }
-
-  async removeFromCart(product: Product) {
-    this.updateItem(product, -1)
-  }
-
   private async updateItem(product: Product, change: number) {
     let cartId = await this.getOrCeateCartId()
     let item$ = this.getItem(cartId, product.key)
     item$.snapshotChanges().pipe(take(1)).subscribe(item => {
-      item$.update({
+      let quantity = (item.payload.child('/items').val() || 0) + change
+
+      if (quantity === 0 ) item$.remove()
+      else item$.update({
         title: product.title,
         imageUrl: product.imageUrl,
         price: product.price,
-        quantity: (item.payload.child('/items').val() || 0) + change
+        quantity: quantity
       })
       // item$.update({ product: product, quantity: (item.payload.exportVal().quantity || 0) + 1 })
       // if (item) item$.update({ quantity: item.quantity + 1 })

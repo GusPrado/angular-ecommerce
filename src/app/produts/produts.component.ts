@@ -1,57 +1,55 @@
 import { ProductService } from './../product.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../models/product';
 import { switchMap } from 'rxjs/operators';
 import { ShoppingCartService } from '../shopping-cart.service';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
+import { ShoppingCart } from '../models/shopping-cart';
 
 @Component({
   selector: 'app-produts',
   templateUrl: './produts.component.html',
   styleUrls: ['./produts.component.css']
 })
-export class ProdutsComponent implements OnInit, OnDestroy {
+export class ProdutsComponent implements OnInit{
   products: Product[] = []
   filteredProducts: Product[] = []
   category: string
-  cart: any
-  subscription: Subscription
+  cart$: Observable<ShoppingCart>
 
   constructor(
-    productService: ProductService,
-    route: ActivatedRoute,
+    private productService: ProductService,
+    private route: ActivatedRoute,
     private shoppingCartService: ShoppingCartService
     ) {
 
-      productService
-          .getAll()
-          .pipe(switchMap(products => {
-              this.products = products
-              return route.queryParamMap
-            }))
-          .subscribe(params => {
+    }
 
-            this.category = params.get('category')
+    async ngOnInit() {
 
-            this.filteredProducts = (this.category) ?
-              this.products.filter(p => p.category === this.category) :
-              this.products
-          })
-   }
-  ngOnDestroy(): void {
+      this.cart$ = await this.shoppingCartService.getCart()
+      this.populateProducts()
+    }
 
-    this.subscription.unsubscribe()
-  }
+    private populateProducts() {
 
-  async ngOnInit() {
-
-    this.subscription = (await this.shoppingCartService.getCart())
-      .subscribe(cart => {
-        this.cart = cart.payload.child('/items').val()
-        //this.cart = cart
-        console.log('carrinho:', this.cart)
+      this.productService
+      .getAll()
+      .pipe(switchMap(products => {
+          this.products = products
+          return this.route.queryParamMap
+        }))
+      .subscribe(params => {
+        this.category = params.get('category')
+        this.applyFilter()
       })
-  }
+    }
 
+    private applyFilter() {
+      this.filteredProducts = (this.category) ?
+        this.products.filter(p => p.category === this.category) :
+        this.products
+
+    }
 }
