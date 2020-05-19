@@ -11,10 +11,10 @@
       </tr>
     </thead>
     <tbody>
-      <td>
-        <div [style.backgroundImage]="'url(' + item.imageUrl + ')'" class="img-thumbnail" alt=""></div>
-      </td>
       <tr *ngFor="let item of cart.items">
+        <td>
+          <div [style.backgroundImage]="'url(' + item.imageUrl + ')'" class="img-thumbnail"></div>
+        </td>
         <td>{{ item.title }}</td>
         <td>
           <product-quantity [product]="item" [shopping-cart]="cart">

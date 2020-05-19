@@ -13,12 +13,14 @@ export class ShoppingCart {
       let item = itemsMap[productId] //prodId = Firebase key
       this.items.push(new ShoppingCartItem({ ...item, key: productId }))
     }
+    console.log('items', this.items)
+    console.log('itemsMap', itemsMap)
   }
 
   getQuantity(product: Product) {
-      console.log("product", product)
-      const item = this.itemsMap[product.key]
-      return item ? item.quantity : 0
+    console.log("product", product)
+    const item = this.itemsMap[product.key]
+    return item ? item.quantity : 0
 
   }
 
