@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/shared/services/auth-guard.service';
 
-import { ProdutsComponent } from './produts/produts.component';
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { CheckOutComponent } from './check-out/check-out.component';
-import { OrderSuccessComponent } from './order-success/order-success.component';
-import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { ProdutsComponent } from './shopping/components/products/produts.component';
+import { ShoppingCartComponent } from './shopping/components/shopping-cart/shopping-cart.component';
+import { CheckOutComponent } from './shopping/components/check-out/check-out.component';
+import { OrderSuccessComponent } from './shopping/components/order-success/order-success.component';
+import { MyOrdersComponent } from './shopping/components/my-orders/my-orders.component';
 import { AdminProductsComponent } from './admin/components/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/components/admin-orders/admin-orders.component';
 import { LoginComponent } from './login/login.component';
