@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Product } from './models/product';
+import { Product } from 'src/app/shared/models/product';
 import { take, map } from 'rxjs/operators';
-import { ShoppingCart } from './models/shopping-cart';
+import { ShoppingCart } from 'src/app/shared/models/shopping-cart';
 import { Observable } from 'rxjs';
 
 @Injectable({

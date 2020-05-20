@@ -1,7 +1,7 @@
 import { AdminAuthGuard } from './admin-auth-guard.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './auth-guard.service';
+import { AuthGuard } from 'src/app/shared/services/auth-guard.service';
 
 import { ProdutsComponent } from './produts/produts.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';

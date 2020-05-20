@@ -1,7 +1,7 @@
-import { ProductService } from './product.service';
-import { CategoryService } from './category.service';
+import { ProductService } from 'src/app/shared/services/product.service';
+import { CategoryService } from 'src/app/shared/services/category.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
-import { UserService } from './user.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -9,14 +9,14 @@ import { AngularFireModule } from 'angularfire2'
 import { AngularFireDatabaseModule } from 'angularfire2/database'
 import { AngularFireAuthModule } from 'angularfire2/auth'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
-import { AuthService } from './auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthGuard } from './auth-guard.service';
+import { AuthGuard } from 'src/app/shared/services/auth-guard.service';
 import { FormsModule } from '@angular/forms'
 import { CustomFormsModule } from 'ng2-validation'
 import { DataTablesModule } from 'angular-datatables'
-import { ShoppingCartService } from './shopping-cart.service';
-import { OrderService } from './order.service';
+import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.service';
+import { OrderService } from 'src/app/shared/services/order.service';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -31,8 +31,8 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { LoginComponent } from './login/login.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { ProductFilterComponent } from './produts/product-filter/product-filter.component';
-import { ProductCardComponent } from './product-card/product-card.component';
-import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { ProductCardComponent } from 'src/app/shared/components/product-card/product-card.component';
+import { ProductQuantityComponent } from 'src/app/shared/components/product-quantity/product-quantity.component';
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 
