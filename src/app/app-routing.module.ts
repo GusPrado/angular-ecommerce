@@ -10,7 +10,7 @@ import { OrderSuccessComponent } from './shopping/components/order-success/order
 import { MyOrdersComponent } from './shopping/components/my-orders/my-orders.component';
 import { AdminProductsComponent } from './admin/components/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/components/admin-orders/admin-orders.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './core/components/login/login.component';
 import { ProductFormComponent } from './admin/components/product-form/product-form.component';
 
 
