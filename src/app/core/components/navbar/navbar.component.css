@@ -2,3 +2,7 @@
 .dropdown-toggle {
   cursor: pointer;
 }
+
+.cart-icon {
+  margin-right: 0.3rem;
+}

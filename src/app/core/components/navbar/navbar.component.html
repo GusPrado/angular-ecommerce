@@ -2,7 +2,7 @@
   <div class="container">
       <!-- <a class="navbar-brand" routerLink="/">Gus Shop</a> -->
   <a class="navbar-brand" routerLink="/">
-    <i class="fab fa-envira"></i>
+    <i class="fa fa-envira"></i>
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -15,7 +15,7 @@
           class="nav-link"
           routerLink="/shopping-cart"
         >
-          <i class="fas fa-shopping-cart"></i>
+          <i class="fa fa-shopping-cart cart-icon"></i>
           <span class="badge badge-warning badge-pill" *ngIf="cart$ | async as cart">
             {{ cart.totalItemsCount }}
           </span>
